@@ -1,0 +1,139 @@
+.flex-box-container1{
+    border: 10px solid black;
+    display: flex;
+    padding:10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.flex-box-container1 div{
+    padding: 10px;
+    border: 1px solid red;
+   
+}
+.container1{
+    
+    border:10px solid blue;
+    width:75%;
+    text-align: center;
+    margin: auto;
+    
+}
+.container2{
+    
+    border:10px solid pink;
+    width:75%;
+    text-align: center;
+    margin: auto;
+    
+}
+.container3{
+    
+    border:10px solid green;
+    width:75%;
+    text-align: center;
+    margin: auto;
+    
+}
+.container4{
+    
+    border:10px solid skyblue;
+    width:75%;
+    text-align: center;
+    margin: auto;
+    
+}
+.flex-box-container2{
+    border: 10px solid brown;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+.flex-box-container2 img{
+   
+     margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.flex-box-container3{
+    border: 10px solid yellow;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+.flex-box-container3 img:hover{
+   
+    justify-content: space-around;
+    box-shadow: 0px 10px 13px -7px #000000, 4px 6px 39px 10px rgba(57,18,230,0.92);
+}
+.flex-box-container4{
+    border: 10px solid orchid;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   padding: 20px   !important;
+}
+.container5{
+    
+    border:10px solid maroon;
+    width:75%;
+    text-align: center;
+    margin: auto;
+    
+}
+.flex-box-container5{
+    border: 5px solid bisque;
+   display: flex;
+   flex-wrap: wrap;
+   padding:10px;
+   justify-content: space-around;
+   background: url('https://media.istockphoto.com/photos/poker-table-felt-background-picture-id510657755?k=20&m=510657755&s=612x612&w=0&h=fvv-HCmYNGwMiZO8ZVHnz2KwYkJZRfXTDXxwHK-sAdw=') center;
+    color: white;
+}
+.flex-box-container5 div{
+    border: 1px solid black;
+    padding:10px;
+    /* height: 350px;  This is also a correct  */
+    flex:1; 
+    height: 350px; 
+     /* distribute equal no of space inside ths div in flex  */
+   
+    /* width: 282px; */
+}
+.flex-box-container5 img{
+    width:25%;
+    padding: 10px;
+}
+.flex-box-container6{
+    border: 5px solid lightcoral;
+   display: flex;
+   flex-wrap: wrap;
+   padding: 10px;
+   justify-content: space-around;
+   background: url('https://media.istockphoto.com/photos/poker-table-felt-background-picture-id510657755?k=20&m=510657755&s=612x612&w=0&h=fvv-HCmYNGwMiZO8ZVHnz2KwYkJZRfXTDXxwHK-sAdw=') center;
+    color: white;
+}
+.flex-box-container6 button {
+    border: 1px Solid black;
+    padding:10px;
+}
+.flex-box-container6 div{
+    border: 1px Solid black;
+    padding:10px;
+}
+.flex-box-container7{
+    border: 5px solid royalblue;
+  display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+  
+   background: url('https://media.istockphoto.com/photos/poker-table-felt-background-picture-id510657755?k=20&m=510657755&s=612x612&w=0&h=fvv-HCmYNGwMiZO8ZVHnz2KwYkJZRfXTDXxwHK-sAdw=') center;
+  }
+td, th {
+    border: 1px solid black;
+    text-align: center;
+    
+  }
+  
+.g{
+    background-color: blueviolet;
+}
