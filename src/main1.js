@@ -285,3 +285,37 @@ function buttonchangeColor(option)
 //   query.classList.toggle('g');
 // });
 // console.log("Query",query);
+let blackJackGame={
+  'player':{'scorespan':'#flex-player-result','div':'#flex-player-box','score':0},
+  'Computer':{'scorespan':'#flex-computer-result','div':'#flex-computer-box','score':0}
+};
+const hitsound= new Audio('./src/sounds/swish.m4a');
+document.querySelector("#hit-button").addEventListener('click',Hitbuttonfunc);
+document.querySelector("#deal-button").addEventListener('click',dealbuttonfunc);
+function Hitbuttonfunc()
+{
+  showcard('player');
+  showcard('Computer');
+}
+function dealbuttonfunc()
+{
+  let playerimg=document.querySelector('#flex-player-box').querySelectorAll('img');
+ let dealerimg=document.querySelector('#flex-computer-box').querySelectorAll('img');
+for(let i=0;i<playerimg.length;i++)
+{
+  playerimg[i].remove();
+}
+for(let i=0;i<dealerimg.length;i++)
+{
+  dealerimg[i].remove();
+}
+}
+
+function showcard(activeplayer)
+{
+  let card=document.createElement('img');
+  card.src='./src/images/Q.png';
+ document.querySelector(blackJackGame[activeplayer]['div']).appendChild(card);
+ hitsound.play();
+ 
+}
