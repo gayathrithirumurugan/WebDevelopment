@@ -242,7 +242,7 @@ var copy_allbutton=[];
 for(let i=0;i<allbuttons.length; i++)
 {
   copy_allbutton[i] =allbuttons[i].classList[1];
-  
+
 }
 function buttonchangeColor(option)
 {
@@ -287,15 +287,20 @@ function buttonchangeColor(option)
 // console.log("Query",query);
 let blackJackGame={
   'player':{'scorespan':'#flex-player-result','div':'#flex-player-box','score':0},
-  'Computer':{'scorespan':'#flex-computer-result','div':'#flex-computer-box','score':0}
+  'Computer':{'scorespan':'#flex-computer-result','div':'#flex-computer-box','score':0},
+  'cards':['2','3','4','5','6','7','8','9','k','Q','J','A'],
+  'cardscore':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10, 'Q':10 ,'J':10,'A':[0,11]}
 };
 const hitsound= new Audio('./src/sounds/swish.m4a');
 document.querySelector("#hit-button").addEventListener('click',Hitbuttonfunc);
 document.querySelector("#deal-button").addEventListener('click',dealbuttonfunc);
 function Hitbuttonfunc()
 {
-  showcard('player');
-  showcard('Computer');
+  let cards=randomcards();
+  showcard('player',cards);
+  updatescore('player',cards);
+  showscores('player',cards);
+  console.log("ans",blackJackGame['player']['score']);
 }
 function dealbuttonfunc()
 {
@@ -309,13 +314,48 @@ for(let i=0;i<dealerimg.length;i++)
 {
   dealerimg[i].remove();
 }
+blackJackGame['player']['score'] = 0;
+blackJackGame['Computer']['score'] = 0;
+document.querySelector(blackJackGame['player']['scorespan']).innerText = 0;
+document.querySelector(blackJackGame['player']['scorespan']).style.color = 'white';
 }
 
-function showcard(activeplayer)
+function showcard(activeplayer,cards)
 {
+  if(blackJackGame[activeplayer]['score']<=21){
   let card=document.createElement('img');
-  card.src='./src/images/Q.png';
+  card.src=`./src/images/${cards}.png`;
  document.querySelector(blackJackGame[activeplayer]['div']).appendChild(card);
  hitsound.play();
- 
+  }
+}
+function randomcards()
+{
+  let index=Math.floor(Math.random()*13);
+  return blackJackGame['cards'][index];
+}
+function updatescore(activeplayer,cards)
+{
+  if (cards==='A')
+  {
+    if(blackJackGame[activeplayer]['score'] + blackJackGame['cardscore'][cards][1] <=21){
+ blackJackGame[activeplayer]['score'] +=blackJackGame['cardscore'][cards][1];}
+ else{
+  blackJackGame[activeplayer]['score'] += blackJackGame['cardscore'][cards][0];
+ }
+  }
+  else{
+  blackJackGame[activeplayer]['score'] += blackJackGame['cardscore'][cards];
+}
+}
+function showscores(activeplayer,cards)
+{
+  if(blackJackGame[activeplayer]['score'] <=21)
+{
+ document.querySelector(blackJackGame[activeplayer]['scorespan']).innerText =blackJackGame[activeplayer]['score'];}
+ else
+ {
+  document.querySelector(blackJackGame[activeplayer]['scorespan']).innerText = 'BUST';
+  document.querySelector(blackJackGame[activeplayer]['scorespan']).style.color = 'red';
+ }
 }
