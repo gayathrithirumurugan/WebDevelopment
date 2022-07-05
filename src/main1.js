@@ -289,21 +289,29 @@ let blackJackGame={
   'player':{'scorespan':'#flex-player-result','div':'#flex-player-box','score':0},
   'Computer':{'scorespan':'#flex-computer-result','div':'#flex-computer-box','score':0},
   'cards':['2','3','4','5','6','7','8','9','k','Q','J','A'],
-  'cardscore':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10, 'Q':10 ,'J':10,'A':[0,11]}
+  'cardscore':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10, 'Q':10 ,'J':10,'A':[1,11]},
+  'wins':0,
+  'loss':0,
+  'draw':0
 };
 const hitsound= new Audio('./src/sounds/swish.m4a');
+const winsound=new Audio('./src/sounds/cash.mp3');
+const losssound=new Audio('./src/sounds/aww.mp3');
 document.querySelector("#hit-button").addEventListener('click',Hitbuttonfunc);
 document.querySelector("#deal-button").addEventListener('click',dealbuttonfunc);
+document.querySelector("#stand-button").addEventListener('click',standButtonfunc);
 function Hitbuttonfunc()
 {
   let cards=randomcards();
   showcard('player',cards);
   updatescore('player',cards);
   showscores('player',cards);
-  console.log("ans",blackJackGame['player']['score']);
+  console.log("Player",blackJackGame['player']['score']);
 }
 function dealbuttonfunc()
 {
+let winner= computeWinner();
+showresult(winner);
   let playerimg=document.querySelector('#flex-player-box').querySelectorAll('img');
  let dealerimg=document.querySelector('#flex-computer-box').querySelectorAll('img');
 for(let i=0;i<playerimg.length;i++)
@@ -318,6 +326,20 @@ blackJackGame['player']['score'] = 0;
 blackJackGame['Computer']['score'] = 0;
 document.querySelector(blackJackGame['player']['scorespan']).innerText = 0;
 document.querySelector(blackJackGame['player']['scorespan']).style.color = 'white';
+document.querySelector(blackJackGame['Computer']['scorespan']).innerText = 0;
+document.querySelector(blackJackGame['Computer']['scorespan']).style.color = 'white';
+setTimeout( function(){
+document.querySelector('#jack1').innerText="let's play";
+ document.querySelector('#jack1').style.color='black';}, 2000);
+
+}
+function standButtonfunc()
+{
+  let cards=randomcards();
+  showcard('Computer',cards);
+  updatescore('Computer',cards);
+  showscores('Computer',cards);
+  console.log("Computer",blackJackGame['Computer']['score']);
 }
 
 function showcard(activeplayer,cards)
@@ -339,7 +361,7 @@ function updatescore(activeplayer,cards)
   if (cards==='A')
   {
     if(blackJackGame[activeplayer]['score'] + blackJackGame['cardscore'][cards][1] <=21){
- blackJackGame[activeplayer]['score'] +=blackJackGame['cardscore'][cards][1];}
+ blackJackGame[activeplayer]['score'] += blackJackGame['cardscore'][cards][1];}
  else{
   blackJackGame[activeplayer]['score'] += blackJackGame['cardscore'][cards][0];
  }
@@ -358,4 +380,65 @@ function showscores(activeplayer,cards)
   document.querySelector(blackJackGame[activeplayer]['scorespan']).innerText = 'BUST';
   document.querySelector(blackJackGame[activeplayer]['scorespan']).style.color = 'red';
  }
+}
+function computeWinner()
+{
+  let winner;
+  if(blackJackGame['player']['score'] <=21 && blackJackGame['Computer']['score'] <= 21)
+  {
+    if(blackJackGame['player']['score'] > blackJackGame['Computer']['score'])
+    {
+      blackJackGame['player']++;
+      alert("You Won!");
+      winner=blackJackGame['player'];
+    }
+    else if(blackJackGame['player']['score'] < blackJackGame['Computer']['score'])
+    {
+      blackJackGame['Computer']++;
+      alert("You Lost!");
+      winner = blackJackGame['Computer'];
+    }
+    else if(blackJackGame['player']['score'] === blackJackGame['Computer']['score'])
+    { blackJackGame['draw']++;
+      alert("you drew");
+    }
+  }
+  else if(blackJackGame['player']['score'] <=21 && blackJackGame['Computer']['score'] > 21)
+    {alert("You Won!");
+     winner=blackJackGame['player']}
+   else if(blackJackGame['player']['score'] > 21 && blackJackGame['Computer']['score'] <= 21)
+    { alert("you lost");
+  winner=blackJackGame['Computer'];
+}
+else if(blackJackGame['player']['score'] > 21 && blackJackGame['Computer']['score'] > 21)
+{
+  alert("You drew!");
+  winner=blackJackGame['player'];
+}
+return winner;
+}
+function showresult(winner)
+{
+  
+
+ if(winner === blackJackGame['player'])
+ {
+  document.querySelector('#jack1').innerText='you won!';
+  document.querySelector('#jack1').style.color='green';
+  winsound.play();
+ }
+ else if(winner === blackJackGame['Computer'])
+ {
+  document.querySelector('#jack1').innerText='you Lost!';
+  document.querySelector('#jack1').style.color='red';
+ losssound.play();
+ }
+ else{
+  document.querySelector('#jack1').innerText='Its Drew';
+  document.querySelector('#jack1').style.color='yellow';
+ }
+
+ //setTimeout(function(){s.innerHTML=old},2000);
+ return 1;
+
 }
