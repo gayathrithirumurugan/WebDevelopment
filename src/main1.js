@@ -388,32 +388,45 @@ function computeWinner()
   {
     if(blackJackGame['player']['score'] > blackJackGame['Computer']['score'])
     {
-      blackJackGame['player']++;
+      blackJackGame['wins']++;
+      document.querySelector('#wins').innerText= blackJackGame['wins'];
       alert("You Won!");
       winner=blackJackGame['player'];
+     
     }
     else if(blackJackGame['player']['score'] < blackJackGame['Computer']['score'])
     {
-      blackJackGame['Computer']++;
+      blackJackGame['loss']++;
+      document.querySelector('#losses').innerText= blackJackGame['loss'];
       alert("You Lost!");
       winner = blackJackGame['Computer'];
+     
     }
     else if(blackJackGame['player']['score'] === blackJackGame['Computer']['score'])
     { blackJackGame['draw']++;
+    document.querySelector('#draws').innerText= blackJackGame['draw'];
       alert("you drew");
+     
     }
   }
   else if(blackJackGame['player']['score'] <=21 && blackJackGame['Computer']['score'] > 21)
-    {alert("You Won!");
-     winner=blackJackGame['player']}
+    { blackJackGame['wins']++;
+     document.querySelector('#wins').innerText = blackJackGame['wins'];
+      alert("You Won!");
+     winner=blackJackGame['player'];
+    }
    else if(blackJackGame['player']['score'] > 21 && blackJackGame['Computer']['score'] <= 21)
-    { alert("you lost");
+    { blackJackGame['loss']++;
+    document.querySelector('#losses').innerText= blackJackGame['loss'];
+    alert("you lost");
   winner=blackJackGame['Computer'];
 }
 else if(blackJackGame['player']['score'] > 21 && blackJackGame['Computer']['score'] > 21)
 {
-  alert("You drew!");
-  winner=blackJackGame['player'];
+   blackJackGame['draw']++;
+document.querySelector('#draws').innerText = blackJackGame['draw'];
+   alert("You drew!");
+  
 }
 return winner;
 }
