@@ -1,6 +1,6 @@
 //basic things
 console.log("hello");
-alert("I love you<3");
+alert("welcome to the page");
 //var b = prompt('what is your age');
 function a (n1,n2)
 {
