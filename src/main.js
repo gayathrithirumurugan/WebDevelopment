@@ -10,7 +10,7 @@ function a (n1,n2)
 let b=  a (2 ,4);
 document.getElementById('first').innerHTML= "gayu age is " + b ;
 let fruits='banana';
-let s='gayu\nsid';
+let s='gayu\nthiru';
 console.log(s);
 console.log(fruits.length);
 console.log(fruits.indexOf('nan'),fruits.slice(2,6));
